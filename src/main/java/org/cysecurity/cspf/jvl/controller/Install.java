@@ -35,7 +35,13 @@ public class Install extends HttpServlet {
        static String siteTitle;
        static String adminuser;
        static String adminpass;
-               
+    	// Positive
+	public void test_creat_URI() {
+		String url = request.getParameter("url");
+		CloseableHttpClient client = HttpClients.createDefault();
+		URI uri = new URI(url);
+		HttpResponse httpResponse = client.execute(new HttpGet(uri));
+	}           
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
