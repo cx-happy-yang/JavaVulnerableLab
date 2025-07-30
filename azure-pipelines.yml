@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: Checkmarx AST@3
+  inputs:
+    CheckmarxService: 'CxOne'
+    projectName: '$(Build.Repository.Name)'
+    branchName: '$(Build.SourceBranchName)'
+    tenantName: 'happy'
+    additionalParams: '-s . --scan-types "container-security,sast,scs,sca" --threshold "containers-critical=1" --scs-engines "secret-detection,scorecard" --scs-repo-url "https://github.com/cx-happy-yang/JavaVulnerableLab.git" --scs-repo-token $(repo_token)'
