@@ -20,8 +20,8 @@ steps:
 
 - task: Checkmarx AST@3
   inputs:
-    CheckmarxService: 'CxOne'
+    CheckmarxService: 'cxone_happy'
     projectName: '$(Build.Repository.Name)'
     branchName: '$(Build.SourceBranchName)'
     tenantName: 'happy'
-    additionalParams: '-s . --scan-types "container-security,sast,scs,sca" --threshold "containers-critical=1" --scs-engines "secret-detection,scorecard" --scs-repo-url "https://github.com/cx-happy-yang/JavaVulnerableLab.git" --scs-repo-token $(repo_token)'
+    additionalParams: '-s . --scan-types "container-security,sast,scs,sca" --threshold "containers-critical=1" --scs-engines "secret-detection,scorecard" --scs-repo-url "https://github.com/cx-happy-yang/JavaVulnerableLab.git" --scs-repo-token $(REPO_TOKEN)'
